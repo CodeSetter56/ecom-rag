@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "moduleResolution": "node", // Good to add for node projects
+
+    /* Strict Type-Checking */
+    "strict": true,
+    "esModuleInterop": true,
+
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true // Good for importing JSON files
+  },
+  "include": [
+    "src/**/*", // This includes all your app code
+    "drizzle.config.ts" // This new line fixes the error
+  ],
+  "exclude": ["node_modules"]
+}

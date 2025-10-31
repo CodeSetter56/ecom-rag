@@ -1,0 +1,46 @@
+services:
+  backend:
+    build:
+      context: ./backend 
+      args:
+        - APP_PORT=${BACKEND_PORT} # pass the port to Dockerfile
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"    
+    env_file:
+      - ./.env            
+    volumes:
+      - ./backend:/app # live reload
+      - /app/node_modules # prevent overwriting node_modules
+    depends_on:
+      - db
+
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: db
+    env_file:
+      - ./.env
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    env_file:
+      - ./.env
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "${PGADMIN_PORT}:80"
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+    restart: always
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
+  pgadmindata:
