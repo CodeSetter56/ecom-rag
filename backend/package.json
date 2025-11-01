@@ -2,11 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/src/server.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/src/index.js",
-    "dev": "nodemon --legacy-watch --watch src src/index.ts"
+    "start": "node dist/src/server.js",
+    "dev": "nodemon --legacy-watch --watch src src/server.ts",
+    "db:generate": "docker compose exec backend npx drizzle-kit generate", 
+    "db:push": "docker compose exec backend npx drizzle-kit push",
+    "db:migrate": "docker compose exec backend npx drizzle-kit migrate"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,7 @@
     "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.5",
     "@types/node": "^24.9.2",
+    "dotenv": "^17.2.3",
     "drizzle-kit": "^0.31.6",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
@@ -27,6 +31,7 @@
     "cookie-parser": "^1.4.7",
     "drizzle-orm": "^0.44.7",
     "express": "^5.1.0",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "postgres": "^3.4.7"
   }
 }
