@@ -9,4 +9,4 @@ if (!connString) {
 }
 
 const client = postgres(connString);
-export const db = drizzle(client, { schema }); // db instance with schema
+export const db = drizzle(client, { schema, logger: false });

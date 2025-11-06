@@ -16,6 +16,6 @@
   "include": [
     "src/**/*", // This includes all your app code
     "drizzle.config.ts" // This new line fixes the error
-  ],
+, "src/lib/auth.ts"  ],
   "exclude": ["node_modules"]
 }
